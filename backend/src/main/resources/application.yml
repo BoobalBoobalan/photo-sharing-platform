@@ -1,0 +1,58 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: photo-sharing-platform
+
+  datasource:
+    # Default to H2 PostgreSQL mode with DB_CLOSE_DELAY=-1 for persistent in-memory database
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:photosharedb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.h2.Driver}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+  jpa:
+    database-platform: ${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 200MB
+
+app:
+  jwt:
+    secret: 9a2f8c4e1b7d6a5e3c8b4f2a0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d
+    expiration-ms: 86400000 # 24 hours
+
+  storage:
+    type: ${STORAGE_TYPE:local} # local or s3
+    local:
+      upload-dir: uploads
+    s3:
+      bucket-name: ${AWS_S3_BUCKET:photo-sharing-platform-bucket}
+      region: ${AWS_REGION:us-east-1}
+      access-key: ${AWS_ACCESS_KEY_ID:mock-access-key}
+      secret-key: ${AWS_SECRET_ACCESS_KEY:mock-secret-key}
+
+logging:
+  level:
+    root: INFO
+    com.photoshare.platform: DEBUG
+    org.springframework.security: INFO
