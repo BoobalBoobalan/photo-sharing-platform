@@ -6,6 +6,14 @@ Built for the **TrizenAI Full-Stack Internship Challenge**.
 
 ---
 
+## 🌐 Live Application Links
+
+- **Live Frontend Web Application**: [https://photo-sharing-platform-ri1c.vercel.app](https://photo-sharing-platform-ri1c.vercel.app)
+- **Live Backend REST API**: [https://photo-sharing-platform-u4t3.onrender.com](https://photo-sharing-platform-u4t3.onrender.com)
+- **Customer Demo PIN Gallery**: [https://photo-sharing-platform-ri1c.vercel.app/gallery/abc123](https://photo-sharing-platform-ri1c.vercel.app/gallery/abc123) (PIN: `482917`)
+
+---
+
 ## 🌟 Key Features
 
 - **Multi-Role User Access**:
@@ -36,82 +44,11 @@ Built for the **TrizenAI Full-Stack Internship Challenge**.
 - **HTTP Client**: Axios (with Request/Response Interceptors)
 - **UI Design System**: Vanilla CSS design system (Glassmorphism, CSS Grid, custom themes)
 - **Icons**: Lucide React
-- **Web Server**: Nginx (Production)
-
----
-
-## 🏗 System Architecture & Database Design
-
-```
-+-----------------------------------------------------------------------------------+
-|                            FRONTEND (React.js + Nginx)                            |
-|  [ Admin Dashboard ]      [ Team Member Portal ]      [ Public Customer Gallery ]  |
-+-----------------------------------------------------------------------------------+
-                                         |
-                                (REST API / JWT Auth)
-                                         v
-+-----------------------------------------------------------------------------------+
-|                               BACKEND (Spring Boot)                               |
-|  - SecurityConfig / AuthTokenFilter / JwtUtils                                     |
-|  - AuthController | EventController | PhotoController | GalleryController           |
-|  - StorageService (S3 / Local File Storage abstraction)                            |
-+-----------------------------------------------------------------------------------+
-                     |                                       |
-                     v                                       v
-         +-----------------------+               +-----------------------+
-         | Database (PostgreSQL) |               | Object Storage (AWS S3|
-         |  - Users              |               |  / Local Uploads)     |
-         |  - Events             |               |                       |
-         |  - Photos             |               +-----------------------+
-         |  - Galleries          |
-         +-----------------------+
-```
-
----
-
-## 🐳 1-Command Docker Deployment (Recommended)
-
-Run the entire full-stack application (PostgreSQL + Spring Boot Backend + Nginx Frontend) with a single command:
-
-```bash
-docker compose up --build
-```
-
-Access Points:
-- **Frontend App**: `http://localhost:5173` or `http://localhost`
-- **Backend API**: `http://localhost:8080`
-- **PostgreSQL DB**: `localhost:5432`
-
----
-
-## 🚀 Local Manual Setup Instructions
-
-### Prerequisites
-- Java 21 SDK (or newer)
-- Node.js v18+ & npm
-- Maven 3.8+ (or included executable)
-
-### 1. Run Backend Server
-```bash
-# Run tests
-C:\maven\bin\mvn.cmd test -f "e:\Photo Sharing Platform\backend\pom.xml"
-
-# Start Spring Boot application on port 8080
-C:\maven\bin\mvn.cmd spring-boot:run -f "e:\Photo Sharing Platform\backend\pom.xml"
-```
-
-### 2. Run Frontend Development Server
-```bash
-cd frontend
-npm install
-npm run dev
-```
+- **Web Server**: Nginx (Docker) / Vercel (Production Cloud)
 
 ---
 
 ## 🔑 Demo Credentials
-
-Upon startup, `DataInitializer` automatically seeds the database with demo credentials:
 
 | Role | Email | Password | Description |
 | :--- | :--- | :--- | :--- |
