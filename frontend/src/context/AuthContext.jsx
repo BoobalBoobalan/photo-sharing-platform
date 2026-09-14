@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     setLoading(true);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     try {
       const res = await API.post('/auth/login', { email, password });
       if (res.data.success) {

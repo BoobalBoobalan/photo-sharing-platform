@@ -10,11 +10,11 @@ const API = axios.create({
   },
 });
 
-// Attach Authorization header if JWT token exists in localStorage
+// Attach Authorization header if JWT token exists in localStorage (except for public auth routes)
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && !config.url.includes('/auth/login') && !config.url.includes('/auth/register')) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
