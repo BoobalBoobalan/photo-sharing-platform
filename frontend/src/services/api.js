@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Use VITE_API_BASE_URL if set, otherwise default to live Render backend production endpoint
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://photo-sharing-platform-u4t3.onrender.com/api';
+// Use VITE_API_BASE_URL if set, otherwise default to relative /api (proxied by Vercel)
+const baseURL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const API = axios.create({
   baseURL: baseURL,
