@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-// Use VITE_API_BASE_URL if set, otherwise default to relative /api (proxied by Vercel)
-const baseURL = import.meta.env.VITE_API_BASE_URL || '/api';
+let rawBase = (import.meta.env.VITE_API_BASE_URL || '/api').trim();
+if (rawBase.startsWith('http') && !rawBase.endsWith('/api') && !rawBase.endsWith('/api/')) {
+  rawBase = rawBase.replace(/\/+$/, '') + '/api';
+}
+const baseURL = rawBase;
 
 const API = axios.create({
   baseURL: baseURL,

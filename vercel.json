@@ -5,6 +5,10 @@
       "destination": "https://photo-sharing-platform-u4t3.onrender.com/api/:path*"
     },
     {
+      "source": "/auth/:path*",
+      "destination": "https://photo-sharing-platform-u4t3.onrender.com/api/auth/:path*"
+    },
+    {
       "source": "/uploads/:path*",
       "destination": "https://photo-sharing-platform-u4t3.onrender.com/uploads/:path*"
     },
